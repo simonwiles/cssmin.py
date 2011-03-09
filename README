@@ -1,0 +1,6 @@
+
+Simple CSS minifier, based on a python implementation of the YUI CSS
+compressor (http://developer.yahoo.com/yui/compressor/css.html).
+
+v0.2 now fully compatible with the Java YUI CSS compressor
+(i.e., passes all tests at https://github.com/yui/yuicompressor/).
