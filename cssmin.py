@@ -167,17 +167,17 @@ def condense_hex_colors(css):
 
 
 def condense_whitespace(css):
-    """Condense multiple adjacent whitespace characters into one."""
+    """ Condense multiple adjacent whitespace characters into one. """
     return re.sub(r'(?<!\\)\s+', ' ', css)
 
 
 def condense_semicolons(css):
-    """Condense multiple adjacent semicolon characters into one."""
+    """ Condense multiple adjacent semicolon characters into one. """
     return re.sub(r';+(?=;)', '', css)
 
 
 def wrap_css_lines(css, line_length):
-    """Wrap the lines of the given CSS to an approximate length."""
+    """ Wrap the lines of the given CSS to an approximate length. """
     lines = []
     line_start = 0
     for i, char in enumerate(css):
@@ -205,13 +205,13 @@ def condense_ie_opacity_filter(css):
 
 
 def preserve_strings(css, comments):
-    """ replace strings by a null-terminated placeholder to ensure they
+    """ Replace strings by a null-terminated placeholder to ensure they
         don't get munged by the minification.
     """
     preserved_tokens = []
 
     def replace_with_token(match):
-        """ substitute located strings with a placeholder, and add the
+        """ Substitute located strings with a placeholder, and add the
             original value to the stack.
         """
         quote = match.group(0)[0]
@@ -229,14 +229,14 @@ def preserve_strings(css, comments):
 
 
 def restore_preserved_tokens(css, preserved_tokens):
-    """ restore preserved tokens :) """
+    """ Restore preserved tokens :) """
     for i in range(0, len(preserved_tokens)):
         css = css.replace('\0_PRESERVED_TOKEN_%d_\0' % i, preserved_tokens[i])
     return css
 
 
 def cssmin(css, wrap=None):
-    """ pass the incoming CSS through the various filters, in order. """
+    """ Pass the incoming CSS through the various filters, in order. """
     css, comments = extract_comments(css)
     css, preserved_tokens = preserve_strings(css, comments)
     css, preserved_tokens = process_comments(css, comments, preserved_tokens)
